@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>🎁 Подарки</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family:
+        "Segoe UI",
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff00ff,
+            #ff1493
+        );
+    
+}
+
+
+/* Главное окно */
+
+.container {
+    width: 90%;
+    max-width: 900px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    background: rgba(0,0,0,0.45);
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(5px);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* Заголовок */
+
+h1 {
+    color: white;
+
+    font-size: 45px;
+
+    margin: 0 0 10px;
+
+    text-shadow:
+        3px 3px 5px black;
+}
+
+.subtitle {
+    color: white;
+
+    font-size: 20px;
+
+    margin-bottom: 30px;
+
+    text-shadow:
+        2px 2px 4px black;
+}
+
+/* Подарки */
+
+.gifts {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+}
+
+.gift {
+    width: 190px;
+    height: 190px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    font-size: 90px;
+
+    background: rgba(255,255,255,0.2);
+
+    backdrop-filter: blur(5px);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.5);
+
+    transition: 0.3s;
+}
+
+.gift:hover {
+    transform:
+        translateY(-12px)
+        scale(1.05);
+
+    background: rgba(255,255,255,0.35);
+}
+
+.gift:active {
+    transform: scale(0.95);
+}
+
+/* Подписи */
+
+.name {
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    text-shadow:
+        2px 2px 4px black;
+}
+
+/* Окно записки */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.75);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10;
+}
+
+.modal.show {
+    display: flex;
+}
+
+/* Открытый подарок */
+
+.letter {
+    width: 90%;
+    max-width: 500px;
+
+    padding: 35px;
+
+    background:
+        linear-gradient(
+            #fff8dc,
+            #ffe9b0
+        );
+
+    border-radius: 20px;
+
+    border: 5px solid #8b5a2b;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 50px black;
+
+    animation: openGift 0.5s ease;
+}
+
+@keyframes openGift {
+
+    from {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+.letter h2 {
+    font-size: 30px;
+
+    color: #8b4513;
+}
+
+.letter p {
+    font-size: 20px;
+
+    line-height: 1.6;
+
+    color: #4b2e15;
+}
+
+/* Подарок внутри */
+
+.present {
+    font-size: 90px;
+
+    margin: 10px;
+}
+
+/* Кнопка закрытия */
+
+.close {
+    border: none;
+
+    padding: 12px 25px;
+
+    border-radius: 10px;
+
+    background: #d94b4b;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.close:hover {
+    background: #ef6565;
+}
+
+/* Телефон */
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .subtitle {
+        font-size: 17px;
+    }
+
+    .gift {
+        width: 130px;
+        height: 130px;
+
+        font-size: 65px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>🎁 Три подарка</h1>
+
+    <div class="subtitle">
+        Выбери один подарок и узнай, что внутри и ты это получешь ✨
+    </div>
+
+
+    <div class="gifts">
+
+        <!-- Подарок 1 -->
+
+        <div>
+            <button
+                class="gift"
+                onclick="openGift(1)">
+                🎁
+            </button>
+
+            <div class="name">
+                Подарок №1
+            </div>
+        </div>
+
+
+        <!-- Подарок 2 -->
+
+        <div>
+            <button
+                class="gift"
+                onclick="openGift(2)">
+                🎁
+            </button>
+
+            <div class="name">
+                Подарок №2
+            </div>
+        </div>
+
+
+        <!-- Подарок 3 -->
+
+        <div>
+            <button
+                class="gift"
+                onclick="openGift(3)">
+                🎁
+            </button>
+
+            <div class="name">
+                Подарок №3
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ОКНО С ЗАПИСКОЙ -->
+
+<div class="modal" id="modal">
+
+    <div class="letter">
+
+        <div class="present">
+            🎁
+        </div>
+
+        <h2>💌 Ты открыл подарок!</h2>
+
+        <p id="message">
+            Поздравляю тебя! 🎉
+        </p>
+
+        <p>
+            Ухухухухух поздравляю ❤️
+        </p>
+
+        <button
+            class="close"
+            onclick="closeGift()">
+            Закрыть
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function openGift(number) {
+
+    const modal =
+        document.getElementById("modal");
+
+    const message =
+        document.getElementById("message");
+
+
+    if (number === 1) {
+
+        message.innerHTML =
+        "🎁 Пздравляю ты открыла средний подарок 1500с !<br><br>" +
+        "✨ Пусть этот день станет особенным!";
+
+    }
+
+
+    if (number === 2) {
+
+        message.innerHTML =
+        "💎 Твой подарок — 1000с ну чу чут не повезло!<br><br>" + 
+        "Но не грусти это не всё!";
+
+    }
+
+
+    if (number === 3) {
+
+        message.innerHTML =
+        "🎉 Сюрприз ТЫ получеш 3000с это мало но сори но что есть то и дал!<br><br>" +
+        "Желаю исполнения самой заветной мечты! ❤️";
+
+    }
+
+
+    modal.classList.add("show");
+}
+
+
+function closeGift() {
+
+    document
+        .getElementById("modal")
+        .classList.remove("show");
+
+}
+
+</script>
+
+</body>
+</html>
